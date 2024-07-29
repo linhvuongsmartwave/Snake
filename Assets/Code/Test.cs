@@ -17,28 +17,21 @@ public class Test : MonoBehaviour
         {
             if (!gameObjectsList[i].activeSelf)
             {
-                // Save the position of the GameObject that is being destroyed
                 Vector3 newPosition = gameObjectsList[i].transform.position;
 
-                // Remove the null entry
                 gameObjectsList.RemoveAt(i);
-
-                // Shift the next GameObject into the removed position
-                if (i < gameObjectsList.Count)
+                for (int j = 1; j < gameObjectsList.Count; j++)
                 {
-                    gameObjectsList[i].transform.position = newPosition;
+                    gameObjectsList[j].transform.position = newPosition;
+                    Vector3 previousPosition = gameObjectsList[j - 1].transform.position;
+                    gameObjectsList[j].transform.position = previousPosition;
                 }
-
-                // Since we removed an element, we decrement i to stay at the same index
+                //if (i < gameObjectsList.Count)
+                //{
+                //    gameObjectsList[i].transform.position = newPosition;
+                //}
                 i--;
             }
         }
-    }
-
-    Vector3 GetNewPosition(int index)
-    {
-        // Example logic to determine new position based on index
-        // This could be more complex depending on your game logic
-        return new Vector3(index * 2, 0, 0); // Just an example, shifting on x-axis
     }
 }
