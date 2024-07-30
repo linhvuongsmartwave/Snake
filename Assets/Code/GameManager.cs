@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public List<GameObject> gameObjectsList;
-
+    public EnemyData[] enemyDatas;
+    public Transform pointSpawn;
     private void Awake()
     {
-        gameObjectsList.Reverse();
+        EnemyStart(0);
     }
 
     void Update()
@@ -39,4 +40,24 @@ public class Test : MonoBehaviour
             }
         }
     }
+    public void EnemyStart(int index)
+    {
+        if (index < 0 || index >= enemyDatas.Length) return;
+        EnemyData turn = enemyDatas[index];
+        if (turn.enemies !=null)
+        {
+            Vector3 spawnPosition = pointSpawn.position;
+            for (int i = 0; i < turn.enemies.Count; i++)
+            {
+                GameObject enemy = Instantiate(turn.enemies[i], spawnPosition, Quaternion.identity);
+                gameObjectsList.Add(enemy);
+                spawnPosition.x += 0.5f;
+            }
+            gameObjectsList.Reverse();
+
+        }
+     
+    }
+  
+
 }
