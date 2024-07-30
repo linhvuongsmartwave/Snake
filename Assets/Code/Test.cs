@@ -1,10 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
     public List<GameObject> gameObjectsList;
+
+    private void Awake()
+    {
+        gameObjectsList.Reverse();
+    }
 
     void Update()
     {
@@ -18,18 +23,18 @@ public class Test : MonoBehaviour
             if (!gameObjectsList[i].activeSelf)
             {
                 Vector3 newPosition = gameObjectsList[i].transform.position;
-
                 gameObjectsList.RemoveAt(i);
-                for (int j = 1; j < gameObjectsList.Count; j++)
+
+                for (int j = gameObjectsList.Count - 1; j > i; j--)
                 {
-                    gameObjectsList[j].transform.position = newPosition;
-                    Vector3 previousPosition = gameObjectsList[j - 1].transform.position;
-                    gameObjectsList[j].transform.position = previousPosition;
+                    gameObjectsList[j].transform.position = gameObjectsList[j - 1].transform.position;
                 }
-                //if (i < gameObjectsList.Count)
-                //{
-                //    gameObjectsList[i].transform.position = newPosition;
-                //}
+
+                if (i < gameObjectsList.Count)
+                {
+                    gameObjectsList[i].transform.position = newPosition;
+                }
+
                 i--;
             }
         }
