@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> gameObjectsList;
     public EnemyData[] enemyDatas;
     public Transform pointSpawn;
+    public float size;
     private void Awake()
     {
         EnemyStart(0);
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
             {
                 GameObject enemy = Instantiate(turn.enemies[i], spawnPosition, Quaternion.identity);
                 gameObjectsList.Add(enemy);
-                spawnPosition.x += 0.5f;
+                spawnPosition.x += size;
             }
             gameObjectsList.Reverse();
 
