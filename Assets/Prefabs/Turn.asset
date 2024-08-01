@@ -12,18 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4025132c80ce204d80d74ce0eec7d62, type: 3}
   m_Name: Turn
   m_EditorClassIdentifier: 
+  length: 3
   enemies:
   - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 198911688507250649, guid: c8100e7505f811d4bbdecd3c8e0f2837, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
-  - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
   - {fileID: 823344876470459136, guid: dd4a261aaebd75f4fb7c65cdf08ace95, type: 3}
