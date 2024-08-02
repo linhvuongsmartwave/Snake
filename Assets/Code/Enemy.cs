@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private int wavePointIndex = 0;
 
+
     private void Start()
     {
         target = Point.points[0];
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
 
         if (Vector2.Distance(transform.position, target.position) <= 0.2f)
         {
@@ -33,22 +34,15 @@ public class Enemy : MonoBehaviour
         if (wavePointIndex >= Point.points.Length)
         {
             return;
-
         }
         target = Point.points[wavePointIndex];
     }
-
-    //--------------------------------------------
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            foreach (GameObject enemy in GameManager.Instance.segment)
-            {
-                Debug.Log("an di 1 khuc");
-                enemy.SetActive(false);
-            }
+            transform.parent.gameObject.SetActive(false);
         }
     }
 }
