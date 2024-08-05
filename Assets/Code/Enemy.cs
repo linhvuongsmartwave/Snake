@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 0.7f;
     private Transform target;
-    private int wavePointIndex = 0;
+    public int wavePointIndex = 0;
 
 
     private void Start()

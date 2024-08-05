@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public EnemyData[] enemyDatas;
     public Transform pointSpawn;
     public float size;
-    public List<GameObject> segment = new List<GameObject>();
 
     private void Awake()
     {
@@ -29,16 +28,19 @@ public class GameManager : MonoBehaviour
             if (!gameObjectsList[i].activeSelf)
             {
                 Vector3 newPosition = gameObjectsList[i].transform.position;
+                int newWavePointIndex = gameObjectsList[i].GetComponent<Enemy>().wavePointIndex;
                 gameObjectsList.RemoveAt(i);
 
                 for (int j = gameObjectsList.Count - 1; j > i; j--)
                 {
                     gameObjectsList[j].transform.position = gameObjectsList[j - 1].transform.position;
+                    gameObjectsList[j].GetComponent<Enemy>().wavePointIndex = gameObjectsList[j - 1].GetComponent<Enemy>().wavePointIndex;
                 }
 
                 if (i < gameObjectsList.Count)
                 {
                     gameObjectsList[i].transform.position = newPosition;
+                    gameObjectsList[i].GetComponent<Enemy>().wavePointIndex = newWavePointIndex;
                 }
 
                 i--;

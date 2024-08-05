@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7643972125669030003}
-  - component: {fileID: 2436394975434293924}
   - component: {fileID: -6933020762472684974}
   m_Layer: 0
   m_Name: 2 1
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953036976953880289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.45748594, w: 0.88921684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39,42 +38,7 @@ Transform:
   - {fileID: 2462650400116665828}
   - {fileID: 299710917240284254}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 54.45}
---- !u!70 &2436394975434293924
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953036976953880289}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.017369788, y: -4.7421975}
-  m_Size: {x: 4.147842, y: 11.31818}
-  m_Direction: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6933020762472684974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &3009204025756082886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -320,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &1798799720674591962
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -454,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &1618806750991774281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -588,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &7500006754786930404
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -722,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &9046567956921284145
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -856,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &5239138878516600277
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -990,6 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  wavePointIndex: 0
 --- !u!58 &2072978490205128479
 CircleCollider2D:
   m_ObjectHideFlags: 0
