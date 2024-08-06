@@ -15,13 +15,13 @@ public class Bullet : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision != null)
-        {
-            this.gameObject.SetActive(false);
-            Debug.Log("a");
-        }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        this.gameObject.SetActive(false);
+    //        Debug.Log("a");
+    //    }
 
-    }
+    //}
 }

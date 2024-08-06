@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 287671887801200554}
   - component: {fileID: 8037946767258518491}
   - component: {fileID: 4997162115685023723}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  segment: []
+  wavePointIndex: 0
 --- !u!58 &4997162115685023723
 CircleCollider2D:
   m_ObjectHideFlags: 0

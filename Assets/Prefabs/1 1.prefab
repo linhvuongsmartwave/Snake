@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5639554766622898061}
   - component: {fileID: 8416341344135320773}
   - component: {fileID: 5333323435694390664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (3)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59118501260477089}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1429658260351661589}
   - component: {fileID: 2022168341179331633}
   - component: {fileID: 3962872606724759707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173495428498952745}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 5319631024607938639}
   - component: {fileID: 6078784954796109133}
   - component: {fileID: 6905437421990036548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848812467772543271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -416,8 +416,8 @@ GameObject:
   - component: {fileID: 1744025850136714908}
   - component: {fileID: 1508219286655186125}
   - component: {fileID: 8090599811730550403}
-  - component: {fileID: 6152718401671387088}
-  m_Layer: 0
+  - component: {fileID: 351587889385355932}
+  m_Layer: 6
   m_Name: 1 (5)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -505,8 +505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   wavePointIndex: 0
---- !u!58 &6152718401671387088
-CircleCollider2D:
+--- !u!70 &351587889385355932
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -534,12 +534,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.00000023841858}
-  serializedVersion: 2
-  m_Radius: 2.5
+  m_Offset: {x: 0.011061133, y: -0.08847217}
+  m_Size: {x: 4.7566767, y: 11.857435}
+  m_Direction: 0
 --- !u!1 &1825510509739790141
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 1931484527029851954}
   - component: {fileID: 2049265772363121331}
   - component: {fileID: 4341906772006715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (6)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825510509739790141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -685,7 +685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7980646221400696127}
   - component: {fileID: -904110473972648534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -727,6 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3de553c5e8e5f44af1c97bd28fe566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &2524518743637454115
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +740,7 @@ GameObject:
   - component: {fileID: 2787321031188076086}
   - component: {fileID: 8437440722661888844}
   - component: {fileID: 3543274330740974489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (7)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -834,7 +835,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2524518743637454115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -874,7 +875,7 @@ GameObject:
   - component: {fileID: 8735486348382908146}
   - component: {fileID: 6895063065894208197}
   - component: {fileID: 7638357543250052355}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (8)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -969,7 +970,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7068444163489538232}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1009,7 +1010,7 @@ GameObject:
   - component: {fileID: 8381436124965189664}
   - component: {fileID: 6845912607882114224}
   - component: {fileID: 1834934112631022871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1 (4)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1104,7 +1105,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9143120746194892869}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

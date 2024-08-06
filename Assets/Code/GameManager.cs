@@ -21,26 +21,26 @@ public class GameManager : MonoBehaviour
         UpdateList();
     }
 
-    void UpdateList()
+    public void UpdateList()
     {
         for (int i = 0; i < gameObjectsList.Count; i++)
         {
             if (!gameObjectsList[i].activeSelf)
             {
                 Vector3 newPosition = gameObjectsList[i].transform.position;
-                int newWavePointIndex = gameObjectsList[i].GetComponent<Enemy>().wavePointIndex;
+                //int newWavePointIndex = gameObjectsList[i].GetComponent<Enemy>().wavePointIndex;
                 gameObjectsList.RemoveAt(i);
 
                 for (int j = gameObjectsList.Count - 1; j > i; j--)
                 {
                     gameObjectsList[j].transform.position = gameObjectsList[j - 1].transform.position;
-                    gameObjectsList[j].GetComponent<Enemy>().wavePointIndex = gameObjectsList[j - 1].GetComponent<Enemy>().wavePointIndex;
+                    //gameObjectsList[j].GetComponent<Enemy>().wavePointIndex = gameObjectsList[j - 1].GetComponent<Enemy>().wavePointIndex;
                 }
 
                 if (i < gameObjectsList.Count)
                 {
                     gameObjectsList[i].transform.position = newPosition;
-                    gameObjectsList[i].GetComponent<Enemy>().wavePointIndex = newWavePointIndex;
+                    //gameObjectsList[i].GetComponent<Enemy>().wavePointIndex = newWavePointIndex;
                 }
 
                 i--;
@@ -67,5 +67,7 @@ public class GameManager : MonoBehaviour
             }
             gameObjectsList.Reverse();
         }
+
+
     }
 }
