@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         UpdateList();
     }
 
+
     public void UpdateList()
     {
         for (int i = 0; i < gameObjectsList.Count; i++)
@@ -28,19 +29,16 @@ public class GameManager : MonoBehaviour
             if (!gameObjectsList[i].activeSelf)
             {
                 Vector3 newPosition = gameObjectsList[i].transform.position;
-                //int newWavePointIndex = gameObjectsList[i].GetComponent<Enemy>().wavePointIndex;
                 gameObjectsList.RemoveAt(i);
 
                 for (int j = gameObjectsList.Count - 1; j > i; j--)
                 {
-                    gameObjectsList[j].transform.position = gameObjectsList[j - 1].transform.position;
-                    //gameObjectsList[j].GetComponent<Enemy>().wavePointIndex = gameObjectsList[j - 1].GetComponent<Enemy>().wavePointIndex;
+                    gameObjectsList[j].transform.DOMove(gameObjectsList[j - 1].transform.position, 0.5f);
                 }
 
                 if (i < gameObjectsList.Count)
                 {
-                    gameObjectsList[i].transform.position = newPosition;
-                    //gameObjectsList[i].GetComponent<Enemy>().wavePointIndex = newWavePointIndex;
+                    gameObjectsList[i].transform.DOMove(newPosition, 0.5f);
                 }
 
                 i--;

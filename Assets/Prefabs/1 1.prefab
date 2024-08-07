@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &5333323435694390664
 CircleCollider2D:
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &3962872606724759707
 CircleCollider2D:
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &6905437421990036548
 CircleCollider2D:
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!70 &351587889385355932
 CapsuleCollider2D:
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &4341906772006715
 CircleCollider2D:
@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3de553c5e8e5f44af1c97bd28fe566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 2
 --- !u!1 &2524518743637454115
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &3543274330740974489
 CircleCollider2D:
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &7638357543250052355
 CircleCollider2D:
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff5812d1c84a46a4f021825bf389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   wavePointIndex: 0
 --- !u!58 &1834934112631022871
 CircleCollider2D:
