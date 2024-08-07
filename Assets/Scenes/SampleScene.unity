@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 68412212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -1.66, z: -0.04821646}
+  m_LocalPosition: {x: -0.02, y: -3.56, z: -0.04821646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1164,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.07501221
+      value: -0.07495117
       objectReference: {fileID: 0}
     - target: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2129,6 +2129,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a281e25a4b6e5b44adf38f107a1e21d, type: 3}
+--- !u!1 &1794300188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794300190}
+  - component: {fileID: 1794300189}
+  m_Layer: 0
+  m_Name: Pooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1794300189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794300188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ff8f4837ebacb4dbbd14abf3f00859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointSpawn: {fileID: 1794300190}
+  pools:
+  - tag: bullet
+    prefab: {fileID: 2907742872837431501, guid: 4c9b10a4daf2d2649a48548cfa61aefe, type: 3}
+    size: 30
+--- !u!4 &1794300190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794300188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.027210541, y: -1.5377209, z: -0.09854446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1804172345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8256814987238798018, guid: 4a281e25a4b6e5b44adf38f107a1e21d, type: 3}
@@ -2461,7 +2510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
-  bulletPrefab: {fileID: 2907742872837431501, guid: 4c9b10a4daf2d2649a48548cfa61aefe, type: 3}
+  bulletTag: 
   pointShoot: {fileID: 68412213}
   timeBetween: 0
   bulletSpeed: 10
@@ -2614,3 +2663,4 @@ SceneRoots:
   - {fileID: 381418061}
   - {fileID: 2023326495}
   - {fileID: 68412213}
+  - {fileID: 1794300190}

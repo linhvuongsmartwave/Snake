@@ -5,16 +5,16 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public DynamicJoystick joystick;
-    public GameObject bulletPrefab; // Thêm biến cho Prefab của viên đạn
-    public Transform pointShoot; // Thêm biến cho điểm xuất phát của viên đạn
+    public string bulletTag;  // Tag cho pool của viên đạn
+    public Transform pointShoot;
     public float timeBetween;
     public float bulletSpeed = 50f;
+
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         if (!joystick)
@@ -25,30 +25,24 @@ public class Gun : MonoBehaviour
         {
             print("co Joystick");
         }
-        //InvokeRepeating("Shoot", 0f, 1f);
+        InvokeRepeating(nameof(Shoot),0,0.5f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Kiểm tra nếu joystick đang di chuyển và nút bắn được nhấn
-        if (joystick && joystick.Horizontal != 0 && joystick.Vertical != 0)
-        {
-            Shoot();
-        }
-    }
 
     void Shoot()
     {
-        // Tính toán hướng bắn dựa trên joystick
-        Vector3 direction = new Vector3(joystick.Horizontal, 0, joystick.Vertical).normalized;
+        Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
 
-        // Tạo viên đạn tại firePoint và đặt hướng của nó
-        GameObject bullet = Instantiate(bulletPrefab, pointShoot.position, Quaternion.identity);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+        GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
+        if (bullet != null)
+        {
+            bullet.transform.position = pointShoot.position;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.SetActive(true);
 
-        // Xoay viên đạn theo hướng bắn
-        //bullet.transform.forward = direction;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero; 
+            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+        }
     }
 }

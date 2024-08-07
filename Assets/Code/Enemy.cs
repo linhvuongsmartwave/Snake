@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            collision.gameObject.SetActive(false);
             transform.parent.GetComponent<Segment>().Damage(1);
         }
 
