@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public EnemyData[] enemyDatas;
     public Transform pointSpawn;
     public float size;
+    public PointData pointData;
 
     private void Awake()
     {
         Instance = this;
         EnemyStart(0);
+        Point(0);
     }
 
     void Update()
@@ -21,7 +23,10 @@ public class GameManager : MonoBehaviour
         UpdateList();
     }
 
-
+    public void Point(int index)
+    {
+        Instantiate(pointData.point[index],new Vector2(0,0),Quaternion.identity);
+    }
     public void UpdateList()
     {
         for (int i = 0; i < gameObjectsList.Count; i++)
