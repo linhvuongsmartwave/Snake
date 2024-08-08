@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        EnemyStart(0);
-        Point(0);
+        EnemyAndPoint(0);
     }
 
     void Update()
@@ -23,10 +22,6 @@ public class GameManager : MonoBehaviour
         UpdateList();
     }
 
-    public void Point(int index)
-    {
-        Instantiate(pointData.point[index],new Vector2(0,0),Quaternion.identity);
-    }
     public void UpdateList()
     {
         for (int i = 0; i < gameObjectsList.Count; i++)
@@ -51,8 +46,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnemyStart(int index)
+    public void EnemyAndPoint(int index)
     {
+        Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity); 
         if (index < 0 || index >= enemyDatas.Length) return;
         EnemyData turn = enemyDatas[index];
         if (turn.enemies != null)

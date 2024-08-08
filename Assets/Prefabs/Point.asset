@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   point:
   - {fileID: 5558671257635406218, guid: 9f32bf2358dda5c4083cc7eb17151be8, type: 3}
+  - {fileID: 5558671257635406218, guid: 48af8991379fa864abffbd111efc20a9, type: 3}
