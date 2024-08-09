@@ -15,7 +15,6 @@ public class Gun : MonoBehaviour
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
-        Instantiate(pointShoot);
     }
 
     void Start()
@@ -36,6 +35,7 @@ public class Gun : MonoBehaviour
     {
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
 
+
         GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
         if (bullet != null)
         {
@@ -48,28 +48,28 @@ public class Gun : MonoBehaviour
             rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
         }
 
-        GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
-        if (bullet != null)
-        {
-            bullet1.transform.position = pointShoot1.position;
-            bullet1.transform.rotation = Quaternion.identity;
-            bullet1.SetActive(true);
+        //GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
+        //if (bullet1 != null)
+        //{
+        //    bullet1.transform.position = pointShoot1.position;
+        //    bullet1.transform.rotation = Quaternion.identity;
+        //    bullet1.SetActive(true);
 
-            Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-        }
+        //    Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
+        //    rb.velocity = Vector2.zero;
+        //    rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+        //}
 
-        GameObject bullet2 = ObjectPooling.Instance.GetPooledObject("bullet");
-        if (bullet != null)
-        {
-            bullet2.transform.position = pointShoot2.position;
-            bullet2.transform.rotation = Quaternion.identity;
-            bullet2.SetActive(true);
+        //GameObject bullet2 = ObjectPooling.Instance.GetPooledObject("bullet");
+        //if (bullet2 != null)
+        //{
+        //    bullet2.transform.position = pointShoot2.position;
+        //    bullet2.transform.rotation = Quaternion.identity;
+        //    bullet2.SetActive(true);
 
-            Rigidbody2D rb = bullet2.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-        }
+        //    Rigidbody2D rb = bullet2.GetComponent<Rigidbody2D>();
+        //    rb.velocity = Vector2.zero;
+        //    rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+        //}
     }
 }
