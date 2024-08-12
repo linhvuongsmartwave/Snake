@@ -15,13 +15,14 @@ public class GameSystem : MonoBehaviour {
 
     #endregion
 
-    private List<GameObject> gameObjectsList;
+    [HideInInspector]
+    public List<Transform> listContainPartBody;
 
     public Point Point;
 
     public GameObject PartBody;
     public Transform ContainPartBody;
-    public int numPartBodyInContainer = 5;
+    public int numPartBody = 5;
     public int numContainer = 5;
 
     public Transform pointSpawn;
@@ -38,7 +39,11 @@ public class GameSystem : MonoBehaviour {
         WaitForSeconds waitForSeconds = new WaitForSeconds(timeSpaw);
         for (int i = 0; i < numContainer; i++) {
             Transform container = Instantiate(ContainPartBody,pointSpawn);
-            Instantiate(PartBody, container);
+            listContainPartBody.Add(container);
+
+            // Spawn partBody
+            PartBody partBody = Instantiate(PartBody).GetComponent<PartBody>();
+            partBody.id = i;
             yield return waitForSeconds;
         }
     }
