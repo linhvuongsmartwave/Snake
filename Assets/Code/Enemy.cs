@@ -44,6 +44,5 @@ public class Enemy : MonoBehaviour
         {
             transform.parent.GetComponent<Segment>().Damage(1);
         }
-
     }
 }
