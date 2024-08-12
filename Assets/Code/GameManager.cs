@@ -36,22 +36,17 @@ public class GameManager : MonoBehaviour
                 {
                     Transform parentTransform = gameObjectsList[j].transform;
 
-                    // Lặp qua tất cả các thành phần con của gameObjectsList[j]
                     for (int k = 0; k < parentTransform.childCount; k++)
                     {
                         Transform childTransform = parentTransform.GetChild(k);
 
-                        // Truy cập vào script Enemy của thành phần con
                         Enemy enemyScript = childTransform.GetComponent<Enemy>();
 
                         if (enemyScript != null)
                         {
-                            // Giảm wavePointIndex để đi lùi lại 1 bước
                             if (enemyScript.wavePointIndex > 0)
                             {
                                 enemyScript.wavePointIndex--;
-
-                                // Cập nhật target để di chuyển lùi lại
                                 enemyScript.target = Point.points[enemyScript.wavePointIndex];
                             }
                         }
@@ -65,17 +60,13 @@ public class GameManager : MonoBehaviour
                     {
                         Transform childTransform = parentTransform.GetChild(k);
 
-                        // Truy cập vào script Enemy của thành phần con
                         Enemy enemyScript = childTransform.GetComponent<Enemy>();
 
                         if (enemyScript != null)
                         {
-                            // Giảm wavePointIndex để đi lùi lại 1 bước
                             if (enemyScript.wavePointIndex > 0)
                             {
                                 enemyScript.wavePointIndex--;
-
-                                // Cập nhật target để di chuyển lùi lại
                                 enemyScript.target = Point.points[enemyScript.wavePointIndex];
                             }
                         }

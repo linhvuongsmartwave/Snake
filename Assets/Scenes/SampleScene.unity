@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.7
+  target: {fileID: 0}
   wavePointIndex: 0
 --- !u!4 &707287244
 Transform:
