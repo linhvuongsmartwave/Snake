@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -33,12 +34,53 @@ public class GameManager : MonoBehaviour
 
                 for (int j = gameObjectsList.Count - 1; j > i; j--)
                 {
-                    gameObjectsList[j].transform.DOMove(gameObjectsList[j - 1].transform.position, 0.5f);
+                    Transform parentTransform = gameObjectsList[j].transform;
+
+                    // Lặp qua tất cả các thành phần con của gameObjectsList[j]
+                    for (int k = 0; k < parentTransform.childCount; k++)
+                    {
+                        Transform childTransform = parentTransform.GetChild(k);
+
+                        // Truy cập vào script Enemy của thành phần con
+                        Enemy enemyScript = childTransform.GetComponent<Enemy>();
+
+                        if (enemyScript != null)
+                        {
+                            // Giảm wavePointIndex để đi lùi lại 1 bước
+                            if (enemyScript.wavePointIndex > 0)
+                            {
+                                enemyScript.wavePointIndex--;
+
+                                // Cập nhật target để di chuyển lùi lại
+                                enemyScript.target = Point.points[enemyScript.wavePointIndex];
+                            }
+                        }
+                    }
                 }
 
                 if (i < gameObjectsList.Count)
                 {
-                    gameObjectsList[i].transform.DOMove(newPosition, 0.5f);
+                    Transform parentTransform = gameObjectsList[i].transform;
+                    for (int k = 0; k < parentTransform.childCount; k++)
+                    {
+                        Transform childTransform = parentTransform.GetChild(k);
+
+                        // Truy cập vào script Enemy của thành phần con
+                        Enemy enemyScript = childTransform.GetComponent<Enemy>();
+
+                        if (enemyScript != null)
+                        {
+                            // Giảm wavePointIndex để đi lùi lại 1 bước
+                            if (enemyScript.wavePointIndex > 0)
+                            {
+                                enemyScript.wavePointIndex--;
+
+                                // Cập nhật target để di chuyển lùi lại
+                                enemyScript.target = Point.points[enemyScript.wavePointIndex];
+                            }
+                        }
+                    }
+                    //gameObjectsList[i].transform.DOMove(newPosition, 0.5f);
                 }
 
                 i--;
@@ -59,8 +101,8 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < turn.enemies.Count; i++)
                 {
-                    GameObject enemy = Instantiate(turn.enemies[i], spawnPosition, Quaternion.Euler(0, 0, 90));
-                    gameObjectsList.Add(enemy);
+                    GameObject segment = Instantiate(turn.enemies[i], spawnPosition, Quaternion.Euler(0, 0, 90));
+                    gameObjectsList.Add(segment);
                     spawnPosition.x += size;
                 }
             }
