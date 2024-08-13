@@ -39,9 +39,9 @@ public class GameSystem : MonoBehaviour {
         WaitForSeconds waitForSeconds = new WaitForSeconds(timeSpaw);
         for (int i = 0; i < numContainer; i++) {
             Transform container = Instantiate(ContainPartBody,pointSpawn);
+            container.GetComponent<ContainPartBody>().hasBody = true;
             listContainPartBody.Add(container);
 
-            // Spawn partBody
             PartBody partBody = Instantiate(PartBody).GetComponent<PartBody>();
             partBody.id = i;
             yield return waitForSeconds;
