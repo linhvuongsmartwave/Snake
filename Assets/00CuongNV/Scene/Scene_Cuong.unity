@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -793,8 +792,8 @@ MonoBehaviour:
   Point: {fileID: 1523259975}
   PartBody: {fileID: 3616807340619071811, guid: 7c7f8628257612a488c3c51c1771a882, type: 3}
   ContainPartBody: {fileID: 7722076344256318949, guid: 80d1ee9d3de748d4ead838068ff6b14c, type: 3}
-  numPartBody: 10
-  numContainer: 10
+  numPartBody: 30
+  numContainer: 30
   pointSpawn: {fileID: 918635367}
   size: 0.55
   pointData: {fileID: 11400000, guid: b4a3e6eb40e32d44cbe0760589d10472, type: 2}

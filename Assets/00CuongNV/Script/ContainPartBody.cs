@@ -20,6 +20,8 @@ public class ContainPartBody : MonoBehaviour {
         Vector2 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
         if (Vector2.Distance(transform.position, target.position) <= 0.01f) {
             NextPoint();
         }
