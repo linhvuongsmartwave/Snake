@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Point : MonoBehaviour
@@ -11,7 +9,6 @@ public class Point : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             points[i] = transform.GetChild(i);
-
         }
     }
 
