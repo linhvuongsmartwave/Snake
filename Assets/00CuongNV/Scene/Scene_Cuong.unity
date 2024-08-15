@@ -790,14 +790,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listContainPartBody: []
   Point: {fileID: 1523259975}
-  PartBody: {fileID: 3616807340619071811, guid: 7c7f8628257612a488c3c51c1771a882, type: 3}
+  Body: {fileID: 4993757820608297936, guid: 2c2a8aa8f4a8f8646b8daf922e690fac, type: 3}
+  PartBody1: {fileID: 3616807340619071811, guid: 7c7f8628257612a488c3c51c1771a882, type: 3}
+  PartBody2: {fileID: 3616807340619071811, guid: 12049bd1ecd6cc341bf29987f643999e, type: 3}
+  head: {fileID: 192312244060548993, guid: 9543c02f46002694e9dd73f8e1596720, type: 3}
   ContainPartBody: {fileID: 7722076344256318949, guid: 80d1ee9d3de748d4ead838068ff6b14c, type: 3}
-  numPartBody: 30
-  numContainer: 30
+  numBody: 15
+  numPartBody: 60
+  numContainer: 60
   pointSpawn: {fileID: 918635367}
   size: 0.55
   pointData: {fileID: 11400000, guid: b4a3e6eb40e32d44cbe0760589d10472, type: 2}
-  timeSpaw: 0.25
+  timeSpaw: 0.2
 --- !u!1 &2023326493
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,11 +953,11 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1604411196}
   - {fileID: 381418061}
   - {fileID: 1758779624}
   - {fileID: 1871845512}
   - {fileID: 2023326495}
-  - {fileID: 1604411196}
   - {fileID: 519420032}
   - {fileID: 1523259974}
   - {fileID: 1794300190}

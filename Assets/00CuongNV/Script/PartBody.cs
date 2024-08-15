@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class PartBody : MonoBehaviour {
 
+    public Body body;
     public int id;
     public ContainPartBody containPartBody;
 
     private float speedBack = 1f;
 
     public bool onMoveFoward;
+
+
 
     private void Update() {
         containPartBody = GameSystem.Instance.listContainPartBody[id].GetComponent<ContainPartBody>();
@@ -40,6 +43,7 @@ public class PartBody : MonoBehaviour {
 
     private void MovingForward() {
         transform.position = GameSystem.Instance.listContainPartBody[id].position;
+        transform.rotation = GameSystem.Instance.listContainPartBody[id].rotation;
     }
 
     private void MovingBack() {
@@ -49,8 +53,7 @@ public class PartBody : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        Debug.Log("Onclick" + gameObject.name);
-        Destroy(gameObject);
+        body.TakedDamage(100);
     }
 
     private void OnDestroy() {

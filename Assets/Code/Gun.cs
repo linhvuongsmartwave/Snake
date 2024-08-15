@@ -33,19 +33,28 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
+        Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
 
+        if (direction.sqrMagnitude < 0.01f)
+        {
+            // Nếu joystick không được sử dụng, trả về
+            return;
+        }
+
+        direction = direction.normalized;
 
         GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
         if (bullet != null)
         {
+            // Đặt vị trí và hướng cho đạn theo pointShoot
             bullet.transform.position = pointShoot.position;
-            bullet.transform.rotation = Quaternion.identity;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg-90;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.SetActive(true);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.zero;
-            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+            rb.velocity = Vector2.zero; // Đặt vận tốc hiện tại của đạn bằng 0
+            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse); // Thêm lực để đẩy đạn đi theo hướng joystick
         }
 
         //GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
