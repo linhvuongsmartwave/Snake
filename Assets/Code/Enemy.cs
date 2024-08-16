@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            transform.parent.GetComponent<Segment>().Damage(1);
+            //transform.parent.GetComponent<Segment>().Damage(1);
         }
     }
 }

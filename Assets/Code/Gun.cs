@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Gun : MonoBehaviour
     public Transform pointShoot2;
     public float timeBetween;
     public float bulletSpeed = 50f;
-
+    public float offset;
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
@@ -30,6 +31,15 @@ public class Gun : MonoBehaviour
         InvokeRepeating(nameof(Shoot), 0, 0.5f);
     }
 
+    private void Update()
+    {
+        Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg-90;
+
+        this.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+    }
 
     void Shoot()
     {

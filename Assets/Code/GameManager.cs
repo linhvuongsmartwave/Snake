@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        EnemyAndPoint(0);
+        //EnemyAndPoint(0);
     }
 
     void Update()
@@ -79,27 +79,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnemyAndPoint(int index)
-    {
-        Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity); 
-        if (index < 0 || index >= enemyDatas.Length) return;
-        EnemyData turn = enemyDatas[index];
-        if (turn.enemies != null)
-        {
-            Vector3 spawnPosition = pointSpawn.position;
+    //public void EnemyAndPoint(int index)
+    //{
+    //    Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity); 
+    //    if (index < 0 || index >= enemyDatas.Length) return;
+    //    EnemyData turn = enemyDatas[index];
+    //    if (turn.enemies != null)
+    //    {
+    //        Vector3 spawnPosition = pointSpawn.position;
 
-            for (int k = 0; k < turn.lengthSnake; k++)
-            {
-                for (int i = 0; i < turn.enemies.Count; i++)
-                {
-                    GameObject segment = Instantiate(turn.enemies[i], spawnPosition, Quaternion.Euler(0, 0, 90));
-                    gameObjectsList.Add(segment);
-                    spawnPosition.x += size;
-                }
-            }
-            gameObjectsList.Reverse();
-        }
+    //        for (int k = 0; k < turn.lengthSnake; k++)
+    //        {
+    //            for (int i = 0; i < turn.enemies.Count; i++)
+    //            {
+    //                GameObject segment = Instantiate(turn.enemies[i], spawnPosition, Quaternion.Euler(0, 0, 90));
+    //                gameObjectsList.Add(segment);
+    //                spawnPosition.x += size;
+    //            }
+    //        }
+    //        gameObjectsList.Reverse();
+    //    }
 
 
-    }
+    //}
 }

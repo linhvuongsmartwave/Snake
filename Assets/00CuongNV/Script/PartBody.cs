@@ -1,3 +1,5 @@
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PartBody : MonoBehaviour {
@@ -48,13 +50,13 @@ public class PartBody : MonoBehaviour {
 
     private void MovingBack() {
         ContainPartBody container = GameSystem.Instance.listContainPartBody[id].GetComponent<ContainPartBody>();
-        Vector2 dir = container.transform.position - transform.position;
-        transform.Translate(dir.normalized * speedBack * Time.deltaTime, Space.World);
+        Vector2 targetPosition = container.transform.position;
+
+        // Di chuyển mượt mà tới vị trí đích với DOTween
+        transform.DOMove(targetPosition, 0.3f);
     }
 
-    private void OnMouseDown() {
-        body.TakedDamage(100);
-    }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))

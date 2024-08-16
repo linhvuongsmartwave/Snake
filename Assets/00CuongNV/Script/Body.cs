@@ -18,7 +18,7 @@ public class Body : MonoBehaviour
     private void Update()
     {
         txtHeal.text = currentHealth.ToString();
-        this.transform.position = this.transform.GetChild(4).position;
+        this.transform.position = this.transform.GetChild(5).position;
     }
     public void TakedDamage(int damage)
     {

@@ -20,15 +20,14 @@ public class GameSystem : MonoBehaviour {
     public List<Transform> listContainPartBody;
 
     public GameObject Body;
-    
     public GameObject PartBody1;
     public GameObject PartBody2;
     public GameObject head;
     public Transform ContainPartBody;
     public int numBody ;
 
-    public int numPartBody ;
-    public int numContainer;
+    private int numPartBody ;
+    private int numContainer;
 
     private int currenPartBody;
     private int currentBody;
@@ -40,30 +39,32 @@ public class GameSystem : MonoBehaviour {
     public float timeSpaw;
 
     private List<Body> listBody = new List<Body>();
+    public List<EnemyData> level;
 
-    
+
+
     private void Start() {
         SpawnPoint(0);
-        currenPartBody = 0;
+        currenPartBody = -1; // nếu 0 = thì sẽ lòi ra1 cục
         currentBody = 0;
         for(int i  = 0; i < numBody; i++)
         {
             Body body = Instantiate(Body,new Vector2(10,0),Quaternion.identity).GetComponent<Body>();
             listBody.Add(body);
         }
-
-        StartCoroutine(SpawnContainPartBody());
-    }
-
-    IEnumerator SpawnContainPartBody() {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(timeSpaw);
-        for (int i = 0; i < numContainer; i++) {
+        for (int i = 0; i < numContainer; i++)
+        {
             currenPartBody++;
-            Transform container = Instantiate(ContainPartBody,pointSpawn);
+
+            Vector3 pointsp = pointSpawn.position;
+            pointsp.x += i * size;
+
+            Transform container = Instantiate(ContainPartBody, pointsp, Quaternion.identity);
             container.GetComponent<ContainPartBody>().hasBody = true;
             listContainPartBody.Add(container);
 
-            if(currenPartBody == 10)
+
+            if (currenPartBody == 10)
             {
                 currenPartBody = 0;
                 currentBody++;
@@ -74,11 +75,14 @@ public class GameSystem : MonoBehaviour {
             partBody.body = listBody[currentBody];
             partBody.transform.SetParent(listBody[currentBody].transform);
             partBody.id = i;
-            yield return waitForSeconds;
-        }
+            }
     }
+
     void SpawnPoint(int index)
     {
         Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity);
+        numBody = level[index].numbody;
+        numPartBody = level[index].numPartBody;
+        numContainer = level[index].numContainer;
     }
 }

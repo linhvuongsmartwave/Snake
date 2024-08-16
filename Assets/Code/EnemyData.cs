@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Turn", menuName = "TurnEnemy")]
 public class EnemyData : ScriptableObject
 {
-    public int lengthSnake;
-    public List<GameObject> enemies;
+    public int numbody;
+    public int numPartBody;
+    public int numContainer;
 }
