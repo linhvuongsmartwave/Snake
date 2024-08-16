@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,8 +18,6 @@ public class GameSystem : MonoBehaviour {
 
     [HideInInspector]
     public List<Transform> listContainPartBody;
-
-    public Point Point;
 
     public GameObject Body;
     
@@ -42,12 +41,14 @@ public class GameSystem : MonoBehaviour {
 
     private List<Body> listBody = new List<Body>();
 
+    
     private void Start() {
+        SpawnPoint(0);
         currenPartBody = 0;
         currentBody = 0;
         for(int i  = 0; i < numBody; i++)
         {
-            Body body = Instantiate(Body).GetComponent<Body>();
+            Body body = Instantiate(Body,new Vector2(10,0),Quaternion.identity).GetComponent<Body>();
             listBody.Add(body);
         }
 
@@ -69,11 +70,15 @@ public class GameSystem : MonoBehaviour {
             }
             GameObject partBodyPrefab = (currentBody % 2 == 0) ? PartBody1 : PartBody2;
 
-            PartBody partBody = Instantiate(partBodyPrefab).GetComponent<PartBody>();
+            PartBody partBody = Instantiate(partBodyPrefab, new Vector2(10, 0), Quaternion.identity).GetComponent<PartBody>();
             partBody.body = listBody[currentBody];
             partBody.transform.SetParent(listBody[currentBody].transform);
             partBody.id = i;
             yield return waitForSeconds;
         }
+    }
+    void SpawnPoint(int index)
+    {
+        Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity);
     }
 }

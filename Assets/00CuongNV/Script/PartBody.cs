@@ -55,6 +55,13 @@ public class PartBody : MonoBehaviour {
     private void OnMouseDown() {
         body.TakedDamage(100);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            body.TakedDamage(1);
+        }
+    }
 
     private void OnDestroy() {
         containPartBody.hasBody = false;
