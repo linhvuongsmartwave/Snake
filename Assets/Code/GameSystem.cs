@@ -7,17 +7,7 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    #region Singleton
-
     public static GameSystem Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    #endregion
-
     [HideInInspector]
     public List<Transform> listContainPartBody;
 
@@ -44,13 +34,24 @@ public class GameSystem : MonoBehaviour
     public List<EnemyData> level;
     public GameObject[] playerPrefabs;
     int characterIndex;
+    private int numberLevel;
+    private int numberSelect;
+    public SceneFader sceneFader;
 
+
+    private void Awake()
+    {
+        Instance = this;
+        //Application.targetFrameRate = 60;
+        //QualitySettings.vSyncCount = 0;
+        numberSelect = PlayerPrefs.GetInt("SelectedLevel", 0);
+        numberLevel = PlayerPrefs.GetInt("CompletedLevel", 0);
+    }
 
 
     private void Start()
     {
-        SpawnPoint(0);
-        SpawnGun();
+        LoadMap(numberSelect);
         currenPartBody = -1; // nếu 0 = thì sẽ lòi ra1 cục
         currentBody = 0;
         for (int i = 0; i < numBody; i++)
@@ -58,6 +59,11 @@ public class GameSystem : MonoBehaviour
             Body body = Instantiate(Body, new Vector2(10, 0), Quaternion.identity).GetComponent<Body>();
             listBody.Add(body);
         }
+        LoadSegment();
+
+    }
+    void LoadSegment()
+    {
         for (int i = 0; i < numContainer; i++)
         {
             currenPartBody++;
@@ -84,17 +90,29 @@ public class GameSystem : MonoBehaviour
         }
     }
 
-    void SpawnPoint(int index)
+    void LoadMap(int index)
     {
         Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity);
         numBody = level[index].numbody;
         numPartBody = level[index].numPartBody;
         numContainer = level[index].numContainer;
-    }
-    void SpawnGun()
-    {
-        characterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
-        Instantiate(playerPrefabs[characterIndex], new Vector2(0, 0), Quaternion.identity);
 
+        characterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        Instantiate(playerPrefabs[characterIndex], new Vector2(0, -4), Quaternion.identity);
     }
+    public void NextLevel()
+    {
+        numberSelect++;
+        if (numberSelect > numberLevel) numberLevel++;
+        else numberLevel = numberSelect;
+        sceneFader.FadeTo("GamePlay");
+        PlayerPrefs.SetInt("SelectedLevel", numberSelect);
+        PlayerPrefs.Save();
+        if (numberLevel >= numberSelect)
+        {
+            PlayerPrefs.SetInt("CompletedLevel", numberLevel);
+            PlayerPrefs.Save();
+        }
+    }
+
 }

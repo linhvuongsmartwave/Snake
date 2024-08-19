@@ -13,7 +13,7 @@ public class LevelButton : MonoBehaviour
     public int nextLevel;
     private Button button;
     private bool canClick = true;
-    //public SceneFader sceneFader;
+    public SceneFader sceneFader;
     public static LevelButton Instance;
 
     private void Awake()
@@ -50,7 +50,7 @@ public class LevelButton : MonoBehaviour
         {
             PlayerPrefs.SetInt("SelectedLevel", numLevel);
             PlayerPrefs.Save();
-            //sceneFader.FadeTo("GamePlay");
+            sceneFader.FadeTo("GamePlay");
         }
     }
 }

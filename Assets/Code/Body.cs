@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -23,7 +24,8 @@ public class Body : MonoBehaviour
     public void TakedDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth < 0)
+        transform.DOScale(Vector3.one * 0.8f, 0.1f).SetLoops(2, LoopType.Yoyo);
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }

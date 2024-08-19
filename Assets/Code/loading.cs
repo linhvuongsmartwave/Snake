@@ -9,6 +9,7 @@ public class loading : MonoBehaviour
     float time = 2f;
     float maxTime = 0f;
     public GameObject play;
+    public SceneFader sceneFader;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,5 +37,9 @@ public class loading : MonoBehaviour
     {
         play.SetActive(true);
         slider.gameObject.SetActive(false);
+    }
+    public void LoadScene()
+    {
+        sceneFader.FadeTo("Home");
     }
 }

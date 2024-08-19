@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class UiPanelDotween : MonoBehaviour
 {
-    [SerializeField] private float fadeTime = 0.5f;
+    public float fadeTime = 0.5f;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
