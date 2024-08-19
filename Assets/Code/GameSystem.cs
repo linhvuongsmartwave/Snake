@@ -5,12 +5,14 @@ using System.Reflection;
 using DG.Tweening;
 using UnityEngine;
 
-public class GameSystem : MonoBehaviour {
+public class GameSystem : MonoBehaviour
+{
     #region Singleton
 
     public static GameSystem Instance;
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
     }
 
@@ -24,9 +26,9 @@ public class GameSystem : MonoBehaviour {
     public GameObject PartBody2;
     public GameObject head;
     public Transform ContainPartBody;
-    public int numBody ;
+    public int numBody;
 
-    private int numPartBody ;
+    private int numPartBody;
     private int numContainer;
 
     private int currenPartBody;
@@ -40,16 +42,20 @@ public class GameSystem : MonoBehaviour {
 
     private List<Body> listBody = new List<Body>();
     public List<EnemyData> level;
+    public GameObject[] playerPrefabs;
+    int characterIndex;
 
 
 
-    private void Start() {
+    private void Start()
+    {
         SpawnPoint(0);
+        SpawnGun();
         currenPartBody = -1; // nếu 0 = thì sẽ lòi ra1 cục
         currentBody = 0;
-        for(int i  = 0; i < numBody; i++)
+        for (int i = 0; i < numBody; i++)
         {
-            Body body = Instantiate(Body,new Vector2(10,0),Quaternion.identity).GetComponent<Body>();
+            Body body = Instantiate(Body, new Vector2(10, 0), Quaternion.identity).GetComponent<Body>();
             listBody.Add(body);
         }
         for (int i = 0; i < numContainer; i++)
@@ -75,7 +81,7 @@ public class GameSystem : MonoBehaviour {
             partBody.body = listBody[currentBody];
             partBody.transform.SetParent(listBody[currentBody].transform);
             partBody.id = i;
-            }
+        }
     }
 
     void SpawnPoint(int index)
@@ -84,5 +90,11 @@ public class GameSystem : MonoBehaviour {
         numBody = level[index].numbody;
         numPartBody = level[index].numPartBody;
         numContainer = level[index].numContainer;
+    }
+    void SpawnGun()
+    {
+        characterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        Instantiate(playerPrefabs[characterIndex], new Vector2(0, 0), Quaternion.identity);
+
     }
 }

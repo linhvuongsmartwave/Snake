@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4025132c80ce204d80d74ce0eec7d62, type: 3}
-  m_Name: Turn
+  m_Name: Turn 1
   m_EditorClassIdentifier: 
-  lengthSnake: 5
-  enemies:
-  - {fileID: 2275675539911933733, guid: 2765b6f7b0919a043958cdb134b0603e, type: 3}
-  - {fileID: 1953036976953880289, guid: 9fae17c3136cab5478a4a7f72024d394, type: 3}
+  numbody: 12
+  numPartBody: 120
+  numContainer: 120
