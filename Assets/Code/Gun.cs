@@ -6,7 +6,6 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public DynamicJoystick joystick;
-    public string bulletTag;  // Tag cho pool của viên đạn
     public Transform pointShoot;
     public Transform pointShoot1;
     public Transform pointShoot2;
@@ -42,11 +41,22 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
+        RotationGun();
+
+
+
+    }
+    void RotationGun()
+    {
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-
-        this.transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (direction.sqrMagnitude < 0.01f)
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        else
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            angle = Mathf.Clamp(angle, -90f, 90f);
+            this.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
 
     }
 
@@ -55,93 +65,57 @@ public class Gun : MonoBehaviour
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
 
         if (direction.sqrMagnitude < 0.01f)
-        {
-            // Nếu joystick không được sử dụng, trả về
             return;
-        }
 
         direction = direction.normalized;
+
+        List<Transform> shootPoints = new List<Transform>();
+
         if (pickgun == PickGun.gun1)
         {
-
-            GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet != null)
-            {
-                bullet.transform.position = pointShoot.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet.SetActive(true);
-
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero; 
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse); 
-            }
+            shootPoints.Add(pointShoot);
         }
-        if (pickgun == PickGun.gun2)
+        else if (pickgun == PickGun.gun2)
         {
-            GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet != null)
-            {
-                bullet.transform.position = pointShoot1.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet.SetActive(true);
-
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero;
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-            }
-            GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet1 != null)
-            {
-                bullet1.transform.position = pointShoot2.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet1.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet1.SetActive(true);
-
-                Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero;
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-            }
+            shootPoints.Add(pointShoot1);
+            shootPoints.Add(pointShoot2);
         }
-        if(pickgun == PickGun.gun3)
+        else if (pickgun == PickGun.gun3)
         {
-            GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet != null)
-            {
-                bullet.transform.position = pointShoot.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet.SetActive(true);
+            shootPoints.Add(pointShoot);
+            shootPoints.Add(pointShoot1);
+            shootPoints.Add(pointShoot2);
+        }
 
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero;
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-            }
-            GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet1 != null)
-            {
-                bullet1.transform.position = pointShoot1.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet1.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet1.SetActive(true);
+        foreach (Transform shootPoint in shootPoints)
+        {
+            FireBullet(shootPoint, direction);
+        }
+    }
 
-                Rigidbody2D rb = bullet1.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero;
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-            }
-            GameObject bullet2 = ObjectPooling.Instance.GetPooledObject("bullet");
-            if (bullet2 != null)
-            {
-                bullet2.transform.position = pointShoot2.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                bullet2.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet2.SetActive(true);
+    void FireBullet(Transform shootPoint, Vector2 direction)
+    {
+        GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
+        if (bullet != null)
+        {
+            bullet.transform.position = shootPoint.position;
 
-                Rigidbody2D rb = bullet2.GetComponent<Rigidbody2D>();
-                rb.velocity = Vector2.zero;
-                rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-            }
+            // Tính toán góc bắn
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+
+            // Giới hạn góc bắn từ -90 độ đến 90 độ
+            angle = Mathf.Clamp(angle, -90f, 90f);
+
+            // Điều chỉnh hướng bắn theo góc đã giới hạn
+            direction = new Vector2(Mathf.Cos((angle + 90) * Mathf.Deg2Rad), Mathf.Sin((angle + 90) * Mathf.Deg2Rad)).normalized;
+
+            // Áp dụng góc bắn đã giới hạn cho đạn
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+            bullet.SetActive(true);
+
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
         }
     }
 }
