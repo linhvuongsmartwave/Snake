@@ -38,6 +38,10 @@ public class GameSystem : MonoBehaviour
     private int numberSelect;
     public SceneFader sceneFader;
 
+    public bool canMove = true;
+    public GameObject effectIce;
+    public GameObject effectFire;
+
 
     private void Awake()
     {
@@ -113,6 +117,36 @@ public class GameSystem : MonoBehaviour
             PlayerPrefs.SetInt("CompletedLevel", numberLevel);
             PlayerPrefs.Save();
         }
+    }
+
+    public void Ice()
+    {
+        canMove=false;
+        GameObject effIce = Instantiate(effectIce,transform.position,Quaternion.identity);
+        Destroy(effIce,5f);
+        StartCoroutine("StopMoveSnake");
+
+
+    }
+    public IEnumerator StopMoveSnake()
+    {
+        yield return new WaitForSeconds(5f);
+        canMove=true;
+    }
+    public void Fire()
+    {
+        for (int i = 0; i < listBody.Count; i++)
+        {
+            if (listBody[i] != null) 
+            {
+                GameObject effFire = Instantiate(effectFire, listBody[i].transform.position, Quaternion.identity);
+                Destroy(effFire, 1f);
+                listBody[i].TakedDamage(5);
+            }
+        }
+
+        listBody.RemoveAll(body => body == null);
+
     }
 
 }

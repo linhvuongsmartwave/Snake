@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 50
   txtHeal: {fileID: 3591863042197087466}
+  effectDie: {fileID: 8823598597385387383, guid: c72e9fe7c1bbf3b48b6cb7ebe8b60d5d, type: 3}
 --- !u!1001 &232273749548926158
 PrefabInstance:
   m_ObjectHideFlags: 0

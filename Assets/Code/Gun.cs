@@ -82,7 +82,7 @@ public class Gun : MonoBehaviour
             GameObject bullet = ObjectPooling.Instance.GetPooledObject("bullet");
             if (bullet != null)
             {
-                bullet.transform.position = pointShoot.position;
+                bullet.transform.position = pointShoot1.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
                 bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
                 bullet.SetActive(true);
@@ -94,7 +94,7 @@ public class Gun : MonoBehaviour
             GameObject bullet1 = ObjectPooling.Instance.GetPooledObject("bullet");
             if (bullet1 != null)
             {
-                bullet1.transform.position = pointShoot1.position;
+                bullet1.transform.position = pointShoot2.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
                 bullet1.transform.rotation = Quaternion.Euler(0, 0, angle);
                 bullet1.SetActive(true);
