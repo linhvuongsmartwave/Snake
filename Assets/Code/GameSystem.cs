@@ -46,8 +46,8 @@ public class GameSystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //Application.targetFrameRate = 60;
-        //QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
         numberSelect = PlayerPrefs.GetInt("SelectedLevel", 0);
         numberLevel = PlayerPrefs.GetInt("CompletedLevel", 0);
     }
@@ -147,6 +147,11 @@ public class GameSystem : MonoBehaviour
 
         listBody.RemoveAll(body => body == null);
 
+    }
+
+    public void Replay()
+    {
+        sceneFader.FadeTo("GamePlay");
     }
 
 }

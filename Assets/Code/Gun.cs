@@ -28,24 +28,15 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
-        if (!joystick)
-        {
-            print("Null Joystick");
-        }
-        else
-        {
-            print("co Joystick");
-        }
+        if (!joystick) print("Null Joystick");else print("co Joystick");
         InvokeRepeating(nameof(Shoot), 0, 0.5f);
     }
 
     private void Update()
     {
         RotationGun();
-
-
-
     }
+
     void RotationGun()
     {
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
@@ -54,27 +45,20 @@ public class Gun : MonoBehaviour
         else
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            angle = Mathf.Clamp(angle, -90f, 90f);
             this.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
-
     }
 
     void Shoot()
     {
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
-
         if (direction.sqrMagnitude < 0.01f)
             return;
-
         direction = direction.normalized;
-
         List<Transform> shootPoints = new List<Transform>();
 
         if (pickgun == PickGun.gun1)
-        {
             shootPoints.Add(pointShoot);
-        }
         else if (pickgun == PickGun.gun2)
         {
             shootPoints.Add(pointShoot1);
@@ -86,7 +70,6 @@ public class Gun : MonoBehaviour
             shootPoints.Add(pointShoot1);
             shootPoints.Add(pointShoot2);
         }
-
         foreach (Transform shootPoint in shootPoints)
         {
             FireBullet(shootPoint, direction);
@@ -100,16 +83,7 @@ public class Gun : MonoBehaviour
         {
             bullet.transform.position = shootPoint.position;
 
-            // Tính toán góc bắn
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-
-            // Giới hạn góc bắn từ -90 độ đến 90 độ
-            angle = Mathf.Clamp(angle, -90f, 90f);
-
-            // Điều chỉnh hướng bắn theo góc đã giới hạn
-            direction = new Vector2(Mathf.Cos((angle + 90) * Mathf.Deg2Rad), Mathf.Sin((angle + 90) * Mathf.Deg2Rad)).normalized;
-
-            // Áp dụng góc bắn đã giới hạn cho đạn
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.SetActive(true);
 

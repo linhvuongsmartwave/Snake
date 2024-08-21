@@ -9,10 +9,14 @@ public class Body : MonoBehaviour
     public int currentHealth;
     public TextMeshProUGUI txtHeal;
     public GameObject effectDie;
+    public int min;
+    public int max;
     private void OnEnable()
     {
-        MaxHealth = Random.Range(10, 15);
-    }
+        min = PlayerPrefs.GetInt("min",15);
+        max = PlayerPrefs.GetInt("max",20);
+        MaxHealth = Random.Range(min, max);
+    }   
     private void Start()
     {
         currentHealth = MaxHealth;
@@ -27,7 +31,7 @@ public class Body : MonoBehaviour
         currentHealth -= damage;
         txtHeal.text = currentHealth.ToString();
 
-        transform.DOScale(Vector3.one * 0.8f, 0.1f).SetLoops(2, LoopType.Yoyo);
+        transform.DOScale(Vector3.one * 0.85f, 0.1f).SetLoops(2, LoopType.Yoyo);
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -37,5 +41,9 @@ public class Body : MonoBehaviour
     {
         GameObject eff= Instantiate(effectDie,transform.position,Quaternion.identity);
         Destroy(eff,0.7f);
+    }
+    void Save()
+    {
+        
     }
 }
