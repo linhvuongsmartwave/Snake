@@ -2,7 +2,8 @@
 using TMPro;
 using UnityEngine;
 
-public class PartBody : MonoBehaviour {
+public class PartBody : MonoBehaviour
+{
 
     public Body body;
     public int id;
@@ -11,29 +12,38 @@ public class PartBody : MonoBehaviour {
     private float speedBack = 1f;
 
     public bool onMoveFoward;
+    private int dame1Turn = 0;
 
 
 
-    private void Update() {
+    private void Update()
+    {
         containPartBody = GameSystem.Instance.listContainPartBody[id].GetComponent<ContainPartBody>();
         containPartBody.hasBody = true;
         CheckContainPackBodyBack();
-        if (onMoveFoward) {
+        if (onMoveFoward)
+        {
             MovingForward();
             return;
         }
         MovingBack();
+
+
+  
     }
 
-    private void CheckContainPackBodyBack() {
+    private void CheckContainPackBodyBack()
+    {
         int pos = id + 1;
-        if(pos == GameSystem.Instance.listContainPartBody.Count) {
+        if (pos == GameSystem.Instance.listContainPartBody.Count)
+        {
             onMoveFoward = true;
             return;
         }
 
         ContainPartBody container = GameSystem.Instance.listContainPartBody[pos].GetComponent<ContainPartBody>();
-        if (container.hasBody) {
+        if (container.hasBody)
+        {
             onMoveFoward = true;
             return;
         }
@@ -43,29 +53,32 @@ public class PartBody : MonoBehaviour {
         id = pos;
     }
 
-    private void MovingForward() {
+    private void MovingForward()
+    {
         transform.position = GameSystem.Instance.listContainPartBody[id].position;
         transform.rotation = GameSystem.Instance.listContainPartBody[id].rotation;
     }
 
-    private void MovingBack() {
+    private void MovingBack()
+    {
         ContainPartBody container = GameSystem.Instance.listContainPartBody[id].GetComponent<ContainPartBody>();
         Vector2 targetPosition = container.transform.position;
-
-        // Di chuyển mượt mà tới vị trí đích với DOTween
         transform.DOMove(targetPosition, 0.3f);
     }
 
- 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             body.TakedDamage(1);
+
         }
+
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         containPartBody.hasBody = false;
     }
 }

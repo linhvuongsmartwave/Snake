@@ -12,9 +12,12 @@ public class Gun : MonoBehaviour
     public float timeBetween;
     public float bulletSpeed = 50f;
     public float offset;
+    public UiPanelDotween lose;
+    public bool hasLose=false;
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
+        lose = GameObject.Find("boardlose").GetComponent<UiPanelDotween>();
     }
 
     public PickGun pickgun;
@@ -91,5 +94,23 @@ public class Gun : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (!hasLose)
+            {
+                Debug.Log("Lose");
+                Lose();
+                GameSystem.Instance.canMove = false;
+                hasLose = true;
+            }
+        }
+    }
+    public void Lose()
+    {
+        lose.PanelFadeIn();
     }
 }

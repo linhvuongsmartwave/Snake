@@ -30,7 +30,7 @@ public class GameSystem : MonoBehaviour
 
     public float timeSpaw;
 
-    private List<Body> listBody = new List<Body>();
+    public List<Body> listBody = new List<Body>();
     public List<EnemyData> level;
     public GameObject[] playerPrefabs;
     int characterIndex;
@@ -42,6 +42,9 @@ public class GameSystem : MonoBehaviour
     public GameObject effectIce;
     public GameObject effectFire;
 
+    public bool hasWin = false;
+    public UiPanelDotween win;
+
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class GameSystem : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         numberSelect = PlayerPrefs.GetInt("SelectedLevel", 0);
         numberLevel = PlayerPrefs.GetInt("CompletedLevel", 0);
+        win = GameObject.Find("boardwin").GetComponent<UiPanelDotween>();
     }
 
 
@@ -65,6 +69,18 @@ public class GameSystem : MonoBehaviour
         }
         LoadSegment();
 
+    }
+    private void Update()
+    {
+        if (listBody.Count==0 && !hasWin)
+        {
+            hasWin = true;
+            Win();
+        }
+    }
+    public void Win()
+    {
+        win.PanelFadeIn();
     }
     void LoadSegment()
     {
@@ -117,6 +133,10 @@ public class GameSystem : MonoBehaviour
             PlayerPrefs.SetInt("CompletedLevel", numberLevel);
             PlayerPrefs.Save();
         }
+    }
+    public void HomeScene()
+    {
+        sceneFader.FadeTo("Home");
     }
 
     public void Ice()

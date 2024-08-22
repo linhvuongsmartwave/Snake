@@ -25,13 +25,14 @@ public class Body : MonoBehaviour
     private void Update()
     {
         this.transform.position = this.transform.GetChild(5).position;
+
     }
     public void TakedDamage(int damage)
     {
         currentHealth -= damage;
         txtHeal.text = currentHealth.ToString();
-
-        transform.DOScale(Vector3.one * 0.85f, 0.1f).SetLoops(2, LoopType.Yoyo);
+        //DOTween.KillAll();
+        transform.DOScale(Vector3.one * 0.8f, 0.08f).SetLoops(2, LoopType.Yoyo);
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -41,9 +42,6 @@ public class Body : MonoBehaviour
     {
         GameObject eff= Instantiate(effectDie,transform.position,Quaternion.identity);
         Destroy(eff,0.7f);
-    }
-    void Save()
-    {
-        
+        GameSystem.Instance.listBody.Remove(this);
     }
 }
