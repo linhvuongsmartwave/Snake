@@ -9,13 +9,16 @@ public class Body : MonoBehaviour
     public int currentHealth;
     public TextMeshProUGUI txtHeal;
     public GameObject effectDie;
-    public int min;
-    public int max;
+    public int plus;
+    public int minHeal;
+    public int maxHeal;
     private void OnEnable()
     {
-        min = PlayerPrefs.GetInt("min",15);
-        max = PlayerPrefs.GetInt("max",20);
-        MaxHealth = Random.Range(min, max);
+        minHeal = 5;
+        maxHeal = 8;
+        plus = PlayerPrefs.GetInt("plus",0);
+        Debug.Log("plus : "+plus);
+        MaxHealth = Random.Range(minHeal+plus, maxHeal+ plus);
     }   
     private void Start()
     {

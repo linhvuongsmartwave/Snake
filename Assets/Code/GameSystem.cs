@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSystem : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class GameSystem : MonoBehaviour
 
     public bool hasWin = false;
     public UiPanelDotween win;
+    public GameObject noMoney;
+    private Button fireBtn;
+    private Button iceBtn;
 
 
     private void Awake()
@@ -54,6 +58,9 @@ public class GameSystem : MonoBehaviour
         numberSelect = PlayerPrefs.GetInt("SelectedLevel", 0);
         numberLevel = PlayerPrefs.GetInt("CompletedLevel", 0);
         win = GameObject.Find("boardwin").GetComponent<UiPanelDotween>();
+        fireBtn = GameObject.Find("fire").GetComponent<Button>();
+        iceBtn = GameObject.Find("ice").GetComponent<Button>();
+        noMoney.SetActive(false);
     }
 
 
@@ -72,7 +79,7 @@ public class GameSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (listBody.Count==0 && !hasWin)
+        if (listBody.Count == 0 && !hasWin)
         {
             hasWin = true;
             Win();
@@ -81,6 +88,9 @@ public class GameSystem : MonoBehaviour
     public void Win()
     {
         win.PanelFadeIn();
+        Shop.Instance.gold += 200;
+        Shop.Instance.Save();
+
     }
     void LoadSegment()
     {
@@ -123,16 +133,22 @@ public class GameSystem : MonoBehaviour
     public void NextLevel()
     {
         numberSelect++;
+        PlayerPrefs.SetInt("plus", (numberSelect) * 5);
         if (numberSelect > numberLevel) numberLevel++;
         else numberLevel = numberSelect;
-        sceneFader.FadeTo("GamePlay");
         PlayerPrefs.SetInt("SelectedLevel", numberSelect);
-        PlayerPrefs.Save();
+        Debug.Log("1");
         if (numberLevel >= numberSelect)
         {
+
             PlayerPrefs.SetInt("CompletedLevel", numberLevel);
+            PlayerPrefs.SetInt("plus", (numberLevel) * 5);
             PlayerPrefs.Save();
+            Debug.Log("2");
         }
+        PlayerPrefs.Save();
+        sceneFader.FadeTo("GamePlay");
+
     }
     public void HomeScene()
     {
@@ -141,37 +157,63 @@ public class GameSystem : MonoBehaviour
 
     public void Ice()
     {
-        canMove=false;
-        GameObject effIce = Instantiate(effectIce,transform.position,Quaternion.identity);
-        Destroy(effIce,5f);
-        StartCoroutine("StopMoveSnake");
+        int price = 100;
+        if (Shop.Instance.gold >= 100)
+        {
+            Shop.Instance.gold -= price;
+            Shop.Instance.Save();
+            iceBtn.interactable = false;
 
-
+            canMove = false;
+            GameObject effIce = Instantiate(effectIce, transform.position, Quaternion.identity);
+            Destroy(effIce, 5f);
+            StartCoroutine("StopMoveSnake");
+        }
+        else noMoney.SetActive(true);
     }
+
     public IEnumerator StopMoveSnake()
     {
         yield return new WaitForSeconds(5f);
-        canMove=true;
+        canMove = true;
     }
+
     public void Fire()
     {
-        for (int i = 0; i < listBody.Count; i++)
+        int price = 100;
+        if (Shop.Instance.gold >= 100)
         {
-            if (listBody[i] != null) 
+            Shop.Instance.gold -= price;
+            Shop.Instance.Save();
+            fireBtn.interactable = false;
+            for (int i = 0; i < listBody.Count; i++)
             {
-                GameObject effFire = Instantiate(effectFire, listBody[i].transform.position, Quaternion.identity);
-                Destroy(effFire, 1f);
-                listBody[i].TakedDamage(5);
+                if (listBody[i] != null)
+                {
+                    GameObject effFire = Instantiate(effectFire, listBody[i].transform.position, Quaternion.identity);
+                    Destroy(effFire, 1f);
+                    listBody[i].TakedDamage(5);
+                }
             }
+
+            listBody.RemoveAll(body => body == null);
         }
-
-        listBody.RemoveAll(body => body == null);
-
+        else noMoney.SetActive(true);
     }
 
     public void Replay()
     {
         sceneFader.FadeTo("GamePlay");
+    }
+
+    public void Pause()
+    {
+        canMove = false;
+    }
+
+    public void Resume()
+    {
+        canMove = true;
     }
 
 }

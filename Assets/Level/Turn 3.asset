@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0810aae617aa074abe92d184178c4ef, type: 3}
-  m_Name: Point
+  m_Script: {fileID: 11500000, guid: e4025132c80ce204d80d74ce0eec7d62, type: 3}
+  m_Name: Turn 3
   m_EditorClassIdentifier: 
-  point:
-  - {fileID: 5558671257635406218, guid: 9f32bf2358dda5c4083cc7eb17151be8, type: 3}
-  - {fileID: 5558671257635406218, guid: 48af8991379fa864abffbd111efc20a9, type: 3}
+  numbody: 16
+  numPartBody: 160
+  numContainer: 160
