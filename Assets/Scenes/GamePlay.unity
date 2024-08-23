@@ -2927,7 +2927,7 @@ MonoBehaviour:
   Body: {fileID: 4993757820608297936, guid: 2c2a8aa8f4a8f8646b8daf922e690fac, type: 3}
   PartBody1: {fileID: 3616807340619071811, guid: 7c7f8628257612a488c3c51c1771a882, type: 3}
   PartBody2: {fileID: 3616807340619071811, guid: 12049bd1ecd6cc341bf29987f643999e, type: 3}
-  head: {fileID: 192312244060548993, guid: 9543c02f46002694e9dd73f8e1596720, type: 3}
+  head: {fileID: 3122946423163252993, guid: 8247625306cbbdb4a8df6cc4d0f1c0e4, type: 3}
   ContainPartBody: {fileID: 7722076344256318949, guid: 80d1ee9d3de748d4ead838068ff6b14c, type: 3}
   numBody: 6
   pointSpawn: {fileID: 918635367}

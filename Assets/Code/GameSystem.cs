@@ -67,7 +67,7 @@ public class GameSystem : MonoBehaviour
     private void Start()
     {
         LoadMap(numberSelect);
-        currenPartBody = -1; // nếu 0 = thì sẽ lòi ra1 cục
+        currenPartBody = 0; // nếu 0 = thì sẽ lòi ra1 cục
         currentBody = 0;
         for (int i = 0; i < numBody; i++)
         {
@@ -83,10 +83,15 @@ public class GameSystem : MonoBehaviour
         {
             hasWin = true;
             Win();
+
         }
+
     }
     public void Win()
     {
+        GameObject head = GameObject.Find("HeadSnake(Clone)");
+        Destroy(head);
+
         win.PanelFadeIn();
         Shop.Instance.gold += 200;
         Shop.Instance.Save();
@@ -94,6 +99,7 @@ public class GameSystem : MonoBehaviour
     }
     void LoadSegment()
     {
+        PartBody partBody;
         for (int i = 0; i < numContainer; i++)
         {
             currenPartBody++;
@@ -104,7 +110,12 @@ public class GameSystem : MonoBehaviour
             Transform container = Instantiate(ContainPartBody, pointsp, Quaternion.identity);
             container.GetComponent<ContainPartBody>().hasBody = true;
             listContainPartBody.Add(container);
-
+            if(i == 0)
+            {
+                partBody = Instantiate(head, new Vector2(10, 0), Quaternion.identity).GetComponent<PartBody>();
+                currenPartBody = 0;
+                continue;
+            }
 
             if (currenPartBody == 10)
             {
@@ -113,7 +124,7 @@ public class GameSystem : MonoBehaviour
             }
             GameObject partBodyPrefab = (currentBody % 2 == 0) ? PartBody1 : PartBody2;
 
-            PartBody partBody = Instantiate(partBodyPrefab, new Vector2(10, 0), Quaternion.identity).GetComponent<PartBody>();
+            partBody = Instantiate(partBodyPrefab, new Vector2(10, 0), Quaternion.identity).GetComponent<PartBody>();
             partBody.body = listBody[currentBody];
             partBody.transform.SetParent(listBody[currentBody].transform);
             partBody.id = i;
