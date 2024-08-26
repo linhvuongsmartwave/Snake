@@ -22,18 +22,15 @@ public class GameSystem : MonoBehaviour
     private int numPartBody;
     private int numContainer;
 
-    private int currenPartBody;
     private int currentBody;
+    private int currenPartBody;
 
-    public Transform pointSpawn;
     public float size;
     public PointData pointData;
+    public Transform pointSpawn;
 
     public float timeSpaw;
 
-    public List<Body> listBody = new List<Body>();
-    public List<EnemyData> level;
-    public GameObject[] playerPrefabs;
     int characterIndex;
     private int numberLevel;
     private int numberSelect;
@@ -43,11 +40,14 @@ public class GameSystem : MonoBehaviour
     public GameObject effectIce;
     public GameObject effectFire;
 
-    public bool hasWin = false;
+    private Button iceBtn;
+    private Button fireBtn;
     public UiPanelDotween win;
     public GameObject noMoney;
-    private Button fireBtn;
-    private Button iceBtn;
+    public bool hasWin = false;
+    public List<EnemyData> level;
+    public GameObject[] playerPrefabs;
+    public List<Body> listBody = new List<Body>();
 
 
     private void Awake()
@@ -67,7 +67,7 @@ public class GameSystem : MonoBehaviour
     private void Start()
     {
         LoadMap(numberSelect);
-        currenPartBody = 0; // nếu 0 = thì sẽ lòi ra1 cục
+        currenPartBody = 0;
         currentBody = 0;
         for (int i = 0; i < numBody; i++)
         {
@@ -83,30 +83,28 @@ public class GameSystem : MonoBehaviour
         {
             hasWin = true;
             Win();
-
         }
 
     }
+
     public void Win()
     {
         GameObject head = GameObject.Find("HeadSnake(Clone)");
         Destroy(head);
-
         win.PanelFadeIn();
         Shop.Instance.gold += 200;
         Shop.Instance.Save();
 
     }
+
     void LoadSegment()
     {
         PartBody partBody;
         for (int i = 0; i < numContainer; i++)
         {
             currenPartBody++;
-
             Vector3 pointsp = pointSpawn.position;
             pointsp.x += i * size;
-
             Transform container = Instantiate(ContainPartBody, pointsp, Quaternion.identity);
             container.GetComponent<ContainPartBody>().hasBody = true;
             listContainPartBody.Add(container);
@@ -116,14 +114,12 @@ public class GameSystem : MonoBehaviour
                 currenPartBody = 0;
                 continue;
             }
-
             if (currenPartBody == 10)
             {
                 currenPartBody = 0;
                 currentBody++;
             }
             GameObject partBodyPrefab = (currentBody % 2 == 0) ? PartBody1 : PartBody2;
-
             partBody = Instantiate(partBodyPrefab, new Vector2(10, 0), Quaternion.identity).GetComponent<PartBody>();
             partBody.body = listBody[currentBody];
             partBody.transform.SetParent(listBody[currentBody].transform);
@@ -141,6 +137,7 @@ public class GameSystem : MonoBehaviour
         characterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         Instantiate(playerPrefabs[characterIndex], new Vector2(0, -4), Quaternion.identity);
     }
+
     public void NextLevel()
     {
         numberSelect++;
@@ -148,19 +145,16 @@ public class GameSystem : MonoBehaviour
         if (numberSelect > numberLevel) numberLevel++;
         else numberLevel = numberSelect;
         PlayerPrefs.SetInt("SelectedLevel", numberSelect);
-        Debug.Log("1");
         if (numberLevel >= numberSelect)
         {
-
             PlayerPrefs.SetInt("CompletedLevel", numberLevel);
             PlayerPrefs.SetInt("plus", (numberLevel) * 5);
             PlayerPrefs.Save();
-            Debug.Log("2");
         }
         PlayerPrefs.Save();
         sceneFader.FadeTo("GamePlay");
-
     }
+
     public void HomeScene()
     {
         sceneFader.FadeTo("Home");
@@ -174,7 +168,6 @@ public class GameSystem : MonoBehaviour
             Shop.Instance.gold -= price;
             Shop.Instance.Save();
             iceBtn.interactable = false;
-
             canMove = false;
             GameObject effIce = Instantiate(effectIce, transform.position, Quaternion.identity);
             Destroy(effIce, 5f);
@@ -206,7 +199,6 @@ public class GameSystem : MonoBehaviour
                     listBody[i].TakedDamage(5);
                 }
             }
-
             listBody.RemoveAll(body => body == null);
         }
         else noMoney.SetActive(true);

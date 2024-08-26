@@ -94,6 +94,8 @@ public class Gun : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
         }
+        AudioManager.Instance.AudioShoot();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

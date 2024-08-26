@@ -399,7 +399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &299994841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,11 +2930,17 @@ MonoBehaviour:
   head: {fileID: 3122946423163252993, guid: 8247625306cbbdb4a8df6cc4d0f1c0e4, type: 3}
   ContainPartBody: {fileID: 7722076344256318949, guid: 80d1ee9d3de748d4ead838068ff6b14c, type: 3}
   numBody: 6
-  pointSpawn: {fileID: 918635367}
   size: 0.2
   pointData: {fileID: 11400000, guid: b4a3e6eb40e32d44cbe0760589d10472, type: 2}
+  pointSpawn: {fileID: 918635367}
   timeSpaw: 0.3
-  listBody: []
+  sceneFader: {fileID: 968822399}
+  canMove: 1
+  effectIce: {fileID: 6730398541259610746, guid: a35ff38a93eb1da49b75dd01e07d25ec, type: 3}
+  effectFire: {fileID: 8544309877178435221, guid: e7345953fb066844288c35745afa26c1, type: 3}
+  win: {fileID: 0}
+  noMoney: {fileID: 1873441277}
+  hasWin: 0
   level:
   - {fileID: 11400000, guid: 526b09af587142549843cb4c0c431d6b, type: 2}
   - {fileID: 11400000, guid: 4840895970119754ab6433d3771adafe, type: 2}
@@ -2951,13 +2957,7 @@ MonoBehaviour:
   - {fileID: 4688624819731468350, guid: 611e8d8c1c38bfe4c9b727318773ec9b, type: 3}
   - {fileID: 4688624819731468350, guid: e37e60bc629b2aa468c279c44e7ab5ae, type: 3}
   - {fileID: 4688624819731468350, guid: cfffacafb201ecb48a20257d34609ba9, type: 3}
-  sceneFader: {fileID: 968822399}
-  canMove: 1
-  effectIce: {fileID: 6730398541259610746, guid: a35ff38a93eb1da49b75dd01e07d25ec, type: 3}
-  effectFire: {fileID: 8544309877178435221, guid: e7345953fb066844288c35745afa26c1, type: 3}
-  hasWin: 0
-  win: {fileID: 0}
-  noMoney: {fileID: 1873441277}
+  listBody: []
 --- !u!1 &1873441277
 GameObject:
   m_ObjectHideFlags: 0

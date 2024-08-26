@@ -20,7 +20,7 @@ public class Shop : MonoBehaviour
 
     public void BuyGold(int gold)
     {
-        //AudioManager.Instance.AudioCoin();
+        AudioManager.Instance.AudioCoin();
         this.gold += gold;
         Save();
         UpdateGold();
