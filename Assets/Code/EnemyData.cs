@@ -6,6 +6,5 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public int numbody;
-    public int numPartBody;
-    public int numContainer;
+
 }

@@ -19,7 +19,7 @@ public class GameSystem : MonoBehaviour
     public Transform ContainPartBody;
     public int numBody;
 
-    private int numPartBody;
+    //private int numPartBody;
     private int numContainer;
 
     private int currentBody;
@@ -131,8 +131,8 @@ public class GameSystem : MonoBehaviour
     {
         Instantiate(pointData.point[index], new Vector2(0, 0), Quaternion.identity);
         numBody = level[index].numbody;
-        numPartBody = level[index].numPartBody;
-        numContainer = level[index].numContainer;
+        //numPartBody = level[index].numPartBody;
+        numContainer = numBody * 10;
 
         characterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
         Instantiate(playerPrefabs[characterIndex], new Vector2(0, -4), Quaternion.identity);
