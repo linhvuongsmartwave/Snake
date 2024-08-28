@@ -89,6 +89,7 @@ public class GameSystem : MonoBehaviour
 
     public void Win()
     {
+        AudioManager.Instance.AudioWin();
         GameObject head = GameObject.Find("HeadSnake(Clone)");
         Destroy(head);
         win.PanelFadeIn();
