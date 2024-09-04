@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     public float offset;
     public UiPanelDotween lose;
     public bool hasLose=false;
+    private float shootTimer = 0f; // Thêm biến đếm thời gian
+    public float shootInterval = 0.2f;
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
@@ -31,24 +33,34 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+        shootInterval = 0.5f;
         if (!joystick) print("Null Joystick");else print("co Joystick");
-        InvokeRepeating(nameof(Shoot), 0, 0.5f);
     }
 
     private void Update()
     {
         RotationGun();
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= shootInterval)
+        {
+            Shoot();
+            shootTimer = 0f; 
+        }
     }
 
     void RotationGun()
     {
         Vector2 direction = new Vector2(joystick.Horizontal, joystick.Vertical);
         if (direction.sqrMagnitude < 0.01f)
+        {
             this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
         else
         {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            this.transform.rotation = Quaternion.Euler(0, 0, angle);
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            float rotationSpeed = 1.0f; // Bạn có thể điều chỉnh giá trị này để kiểm soát tốc độ xoay
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
@@ -85,17 +97,13 @@ public class Gun : MonoBehaviour
         if (bullet != null)
         {
             bullet.transform.position = shootPoint.position;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+            bullet.transform.rotation= this.transform.rotation;
             bullet.SetActive(true);
-
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
             rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
         }
         AudioManager.Instance.AudioShoot();
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -104,7 +112,6 @@ public class Gun : MonoBehaviour
         {
             if (!hasLose)
             {
-                Debug.Log("Lose");
                 Lose();
                 GameSystem.Instance.canMove = false;
                 hasLose = true;
