@@ -154,7 +154,10 @@ MonoBehaviour:
   currentHealth: 0
   effectDie: {fileID: 8823598597385387383, guid: c72e9fe7c1bbf3b48b6cb7ebe8b60d5d, type: 3}
   txtHeal: {fileID: 3591863042197087466}
-  gunPrefab: {fileID: 4688624819731468350, guid: e37e60bc629b2aa468c279c44e7ab5ae, type: 3}
+  gunPrefab:
+  - {fileID: 8623643766059957849, guid: ec65a10d1f669bc46bf9ca9957877845, type: 3}
+  - {fileID: 8623643766059957849, guid: ad3e4cfed25b0994b8a8d9bd3e0ccced, type: 3}
+  - {fileID: 8623643766059957849, guid: 3c72705c94bcc5143b79306a4dc322b2, type: 3}
 --- !u!1001 &232273749548926158
 PrefabInstance:
   m_ObjectHideFlags: 0

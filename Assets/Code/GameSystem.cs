@@ -31,7 +31,7 @@ public class GameSystem : MonoBehaviour
 
     public float timeSpaw;
 
-    int characterIndex;
+    public int characterIndex;
     private int numberLevel;
     private int numberSelect;
     public SceneFader sceneFader;
@@ -107,6 +107,7 @@ public class GameSystem : MonoBehaviour
             Vector3 pointsp = pointSpawn.position;
             pointsp.x += i * size;
             Transform container = Instantiate(ContainPartBody, pointsp, Quaternion.identity);
+            container.SetParent(pointSpawn);
             container.GetComponent<ContainPartBody>().hasBody = true;
             listContainPartBody.Add(container);
             if(i == 0)

@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class Body : MonoBehaviour
 {
-    public int plus;
-    public int minHeal;
-    public int maxHeal;
-    public int MaxHealth;
-    public int currentHealth;
+   [HideInInspector] public int plus;
+    [HideInInspector] public int minHeal;
+    [HideInInspector] public int maxHeal;
+    [HideInInspector] public int MaxHealth;
+    [HideInInspector] public int currentHealth;
     public GameObject effectDie;
     public TextMeshProUGUI txtHeal;
 
-    // Thuộc tính mới liên quan đến súng
-    public GameObject gunPrefab; // Prefab của súng để gắn vào một số đoạn của thân
-    private GameObject attachedGun; // Súng được gắn vào đoạn thân này
+    public GameObject[] gunPrefab; 
+    private GameObject attachedGun; 
 
     private void OnEnable()
     {
@@ -24,11 +23,11 @@ public class Body : MonoBehaviour
         plus = PlayerPrefs.GetInt("plus", 0);
         MaxHealth = Random.Range(minHeal + plus, maxHeal + plus);
 
-        // Ngẫu nhiên quyết định liệu có gắn súng vào đoạn thân này không
-        if (Random.value > 0.5f) // 50% cơ hội có súng
+        if (Random.value > 0.5f) 
         {
-            attachedGun = Instantiate(gunPrefab, transform); // Gắn súng vào thân
-            attachedGun.transform.localPosition = Vector3.zero; // Điều chỉnh vị trí súng nếu cần
+            int randomGun = Random.Range(GameSystem.Instance.characterIndex, gunPrefab.Length);
+            attachedGun = Instantiate(gunPrefab[randomGun], transform); 
+            attachedGun.transform.localPosition = Vector3.zero; 
         }
     }
 
@@ -54,11 +53,12 @@ public class Body : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Nếu có súng được gắn vào, làm cho súng rơi xuống vị trí (0,0)
         if (attachedGun != null)
         {
-            attachedGun.transform.parent = null; // Tách súng khỏi thân
-            attachedGun.transform.DOMove(Vector3.zero, 1f); // Di chuyển súng rơi xuống (0,0)
+            attachedGun.transform.parent = null;
+            attachedGun.transform.DOMove(Vector3.zero, 1f).OnComplete(() => {
+                Destroy(attachedGun);
+            });
         }
 
         GameObject eff = Instantiate(effectDie, transform.position, Quaternion.identity);

@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
-            float rotationSpeed = 1.0f; // Bạn có thể điều chỉnh giá trị này để kiểm soát tốc độ xoay
+            float rotationSpeed = 1.0f;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
