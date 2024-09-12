@@ -157,6 +157,11 @@ public class GameSystem : MonoBehaviour
         sceneFader.FadeTo("GamePlay");
     }
 
+    public void ReplayGun(int index)
+    {
+        Instantiate(playerPrefabs[index], new Vector2(0, -4), Quaternion.identity);
+    }
+
     public void HomeScene()
     {
         sceneFader.FadeTo("Home");

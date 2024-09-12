@@ -12,6 +12,7 @@ public class Body : MonoBehaviour
     [HideInInspector] public int currentHealth;
     public GameObject effectDie;
     public TextMeshProUGUI txtHeal;
+    int randomGun;
 
     public GameObject[] gunPrefab; 
     private GameObject attachedGun; 
@@ -25,7 +26,7 @@ public class Body : MonoBehaviour
 
         if (Random.value > 0.5f) 
         {
-            int randomGun = Random.Range(GameSystem.Instance.characterIndex, gunPrefab.Length);
+            randomGun = Random.Range(GameSystem.Instance.characterIndex, gunPrefab.Length);
             attachedGun = Instantiate(gunPrefab[randomGun], transform); 
             attachedGun.transform.localPosition = Vector3.zero; 
         }
@@ -58,6 +59,12 @@ public class Body : MonoBehaviour
             attachedGun.transform.parent = null;
             attachedGun.transform.DOMove(Vector3.zero, 1f).OnComplete(() => {
                 Destroy(attachedGun);
+                GameObject gun = GameObject.FindObjectOfType<Gun>().gameObject;
+                if (gun.transform.parent != null)
+                {
+                    Destroy(gun.transform.parent.gameObject); 
+                }
+                GameSystem.Instance.ReplayGun(randomGun);
             });
         }
 
