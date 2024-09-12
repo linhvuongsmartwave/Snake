@@ -101,7 +101,7 @@ public class Gun : MonoBehaviour
             bullet.SetActive(true);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
-            rb.AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+            rb.AddForce(transform.up * bulletSpeed, ForceMode2D.Impulse);
         }
         AudioManager.Instance.AudioShoot();
     }

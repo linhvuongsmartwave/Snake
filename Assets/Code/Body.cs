@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Body : MonoBehaviour
 {
-   [HideInInspector] public int plus;
+    [HideInInspector] public int plus;
     [HideInInspector] public int minHeal;
     [HideInInspector] public int maxHeal;
     [HideInInspector] public int MaxHealth;
@@ -14,8 +14,8 @@ public class Body : MonoBehaviour
     public TextMeshProUGUI txtHeal;
     int randomGun;
 
-    public GameObject[] gunPrefab; 
-    private GameObject attachedGun; 
+    public GameObject[] gunPrefab;
+    private GameObject attachedGun;
 
     private void OnEnable()
     {
@@ -24,11 +24,11 @@ public class Body : MonoBehaviour
         plus = PlayerPrefs.GetInt("plus", 0);
         MaxHealth = Random.Range(minHeal + plus, maxHeal + plus);
 
-        if (Random.value > 0.5f) 
+        if (Random.value > 0.7f)
         {
             randomGun = Random.Range(GameSystem.Instance.characterIndex, gunPrefab.Length);
-            attachedGun = Instantiate(gunPrefab[randomGun], transform); 
-            attachedGun.transform.localPosition = Vector3.zero; 
+            attachedGun = Instantiate(gunPrefab[randomGun], transform);
+            attachedGun.transform.localPosition = Vector3.zero;
         }
     }
 
@@ -57,12 +57,15 @@ public class Body : MonoBehaviour
         if (attachedGun != null)
         {
             attachedGun.transform.parent = null;
-            attachedGun.transform.DOMove(Vector3.zero, 1f).OnComplete(() => {
+            GameObject gun = GameObject.FindObjectOfType<Gun>().gameObject;
+            Vector2 dir = gun.transform.position - this.transform.position;
+            attachedGun.transform.DOMove(gun.transform.position, 1f).OnComplete(() =>
+            {
                 Destroy(attachedGun);
-                GameObject gun = GameObject.FindObjectOfType<Gun>().gameObject;
+
                 if (gun.transform.parent != null)
                 {
-                    Destroy(gun.transform.parent.gameObject); 
+                    Destroy(gun.transform.parent.gameObject);
                 }
                 GameSystem.Instance.ReplayGun(randomGun);
             });
