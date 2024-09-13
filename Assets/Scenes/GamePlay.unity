@@ -2934,6 +2934,7 @@ MonoBehaviour:
   pointData: {fileID: 11400000, guid: b4a3e6eb40e32d44cbe0760589d10472, type: 2}
   pointSpawn: {fileID: 918635367}
   timeSpaw: 0.3
+  characterIndex: 0
   sceneFader: {fileID: 968822399}
   canMove: 1
   effectIce: {fileID: 6730398541259610746, guid: a35ff38a93eb1da49b75dd01e07d25ec, type: 3}
@@ -2957,6 +2958,9 @@ MonoBehaviour:
   - {fileID: 4688624819731468350, guid: 611e8d8c1c38bfe4c9b727318773ec9b, type: 3}
   - {fileID: 4688624819731468350, guid: e37e60bc629b2aa468c279c44e7ab5ae, type: 3}
   - {fileID: 4688624819731468350, guid: cfffacafb201ecb48a20257d34609ba9, type: 3}
+  - {fileID: 839609226950164780, guid: 8982a8c0aba10dc498a3d319517b8601, type: 3}
+  - {fileID: 258922222386183663, guid: 7e8a4cd5a5d429c45939f35047e6a508, type: 3}
+  - {fileID: 8779586875148937039, guid: 4eff0d90f94487346a06262b71495bed, type: 3}
   listBody: []
 --- !u!1 &1873441277
 GameObject:

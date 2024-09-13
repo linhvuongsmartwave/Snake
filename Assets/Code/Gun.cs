@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     public UiPanelDotween lose;
     public bool hasLose=false;
     private float shootTimer = 0f; // Thêm biến đếm thời gian
-    public float shootInterval = 0.2f;
+    public float speedShoot;
     private void OnEnable()
     {
         joystick = GameObject.FindObjectOfType<DynamicJoystick>();
@@ -33,7 +33,6 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
-        shootInterval = 0.5f;
         if (!joystick) print("Null Joystick");else print("co Joystick");
     }
 
@@ -41,7 +40,7 @@ public class Gun : MonoBehaviour
     {
         RotationGun();
         shootTimer += Time.deltaTime;
-        if (shootTimer >= shootInterval)
+        if (shootTimer >= speedShoot)
         {
             Shoot();
             shootTimer = 0f; 
